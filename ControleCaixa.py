@@ -5,7 +5,7 @@ class ControleCaixa:
     def __init__(self):
         self.valor = []
         self.cadastro = [] 
-        # self.contasreceber = []
+        self.contasreceber = []
         self.receber = []
        
         self.somaganhos = 0
@@ -50,16 +50,19 @@ class ControleCaixa:
         print("                                                   |")
         print(" (1) - CADASTRAR CONTA | (2) - VOLTAR PARA O MENU  |")
         print("-------------------------------------------------- |")
-        #colocar a variavel do calculo de saldo 
+         
 
         selection =  int(input(" OPÇÃO : "))
 
         if (selection == 1):
-            while (selection == 1):
+           # while (selection == 1):
+                
                 self.cadastro.append(input('Informe a sua divida : '))
-                self.valor.append(input('Infome o valor da divida : '))
-                #for i range(1,1,1)
-                # self.somadivida = self.somadivida + self.valor[i]
+                self.valor.append(float(input('Infome o valor da divida : ')))
+                #for i in range (len(self.valor)):
+                self.somadivida = sum(self.valor)
+                   # self.somadivida += self.valor[i]
+                print('O valor total da divida é: {}'.format(self.somadivida))
                 return self.contas_a_pagar()
         elif(selection == 2):
             return self.menu()
@@ -72,19 +75,20 @@ class ControleCaixa:
         print("-------------------------------------------------- |")
         print("               CONTAS A RECEBER                    |")
         print("                                                   |")
-        print(" (1) - CADASTRAR GANHO | (2) - VOLTAR PARA O MENU  Saldo atual "|")
+        print(" (1) - CADASTRAR GANHO | (2) - VOLTAR PARA O MENU  |")
         print("-------------------------------------------------- |")
         #colocar a variavel do calculo de saldo 
 
         selection =  float(input(" OPÇÃO : "))
 
         if selection == 1:
-            while (selection == 1):
+           # while (selection == 1):
                 self.contasreceber.append(input('informe o seu ganho : '))
-                self.receber.append(input('Valor do ganho : '))
-               # self.somaganhos = self.somaganhos + self.receber
+                self.receber.append(float(input('Valor do ganho : ')))
+                self.somaganhos = sum(self.receber)
+                print('O valor total dos ganhos é: {}'.format(self.somaganhos))
                 return self.contas_a_receber()
-        elif(selection == 2):
+        elif(selection == 2):   
             return self.menu()
         else:
             print(" INFORME UMA OÇÃO VALIDA ! ")
@@ -115,3 +119,4 @@ class ControleCaixa:
         else: 
             calculo = self.somaganhos - self.somadivida
             print("Esta tendo mais ganho do que gasto, continue assim !!" +str(calculo))
+   
