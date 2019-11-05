@@ -1,41 +1,101 @@
 class ControleCaixa:
+    from time import sleep
+    
+    # CONSTRUTOR
     def __init__(self):
         self.valor = []
-        self.cadastro= [] 
-        self.contasreceber = 0
-        self.receber = 0
-        self.n = 'n'
+        self.cadastro = [] 
+        # self.contasreceber = []
+        self.receber = []
        
-        self.somaganhos=0
-        self.somadivida=0
+        self.somaganhos = 0
+        self.somadivida = 0
         self.contas_a_pagar
         self.contas_a_receber
-#1-contas a pagar
+
+    # FUNÇÃO DO MENU
+    def menu(self):
+        print("---------------------------- |")
+        print("             MENU            |")
+        print("                             |")
+        print("(1)  - [ Contas a pagar  ]   |")
+        print("(2)  - [ Contas a receber]   |")
+        print("(3)  - [ Extrato]            |")
+        print("(4)  - [ Exit]               |")
+        print("---------------------------- |")
+
+        selection = int(input("OPÇÃO : "))
+
+        if (selection == 1):
+            self.contas_a_pagar()
+
+        elif (selection == 2):
+            self.contas_a_receber()
+
+        elif (selection ==3):
+            self.Extrato()
+            
+
+        elif  selection == 4: 
+                exit
+        else:
+            print(" INFORME UMA OPÇÃO VALIDA ! ")
+            self.sleep(1)
+            return self.menu()
+        
+    # 1 - FUNÇÃO PARA O CADASTRO DE CONTAS
     def contas_a_pagar(self):
-        print('CONTAS A PAGAR')
-        self.n=input('Quer informar outra conta a pagar? \n')
-        while (self.n != 'n'):
-            self.cadastro.append = (input('informe a sua divida: '))
-            self.valor.append = float(input('Infome o valor da divida:'))
-            self.somadivida = self.somadivida + self.valor
-            self.n=input('Quer informar outra conta a pagar? \n')
-            print(f'As suas contas são: {self.cadastro} \n')
-            print(f"No valor          :. {self.valor}\n")
-# 2- contas a receber
+        print("-------------------------------------------------- |")
+        print("               CONTAS A PAGAR                      |")
+        print("                                                   |")
+        print(" (1) - CADASTRAR CONTA | (2) - VOLTAR PARA O MENU  |")
+        print("-------------------------------------------------- |")
+        #colocar a variavel do calculo de saldo 
+
+        selection =  int(input(" OPÇÃO : "))
+
+        if (selection == 1):
+            while (selection == 1):
+                self.cadastro.append(input('Informe a sua divida : '))
+                self.valor.append(input('Infome o valor da divida : '))
+                #for i range(1,1,1)
+                # self.somadivida = self.somadivida + self.valor[i]
+                return self.contas_a_pagar()
+        elif(selection == 2):
+            return self.menu()
+        else:
+            print(" INFORME UMA OPÇÃO VALIDA ! ")
+            self.sleep(2)
+
+    # 2 - VALORES A RECEBER
     def contas_a_receber(self): 
-        print('CONTAS A RECEBER')
-        n=input('Cadastrar  conta a receber  ? s para sim a ou n para sairmos')
-        while (n != 'n'):
-            self.contasreceber.append=(input('informe o seu ganho: '))
-            self.receber.append=(float(input('Valor do ganho: ')))
-            self.somaganhos = self.somaganhos + self.receber
-            n=input('Outro ganho para receber ? s para sim a ou n para sairmos')
-#3-Extrato
+        print("-------------------------------------------------- |")
+        print("               CONTAS A RECEBER                    |")
+        print("                                                   |")
+        print(" (1) - CADASTRAR GANHO | (2) - VOLTAR PARA O MENU  Saldo atual "|")
+        print("-------------------------------------------------- |")
+        #colocar a variavel do calculo de saldo 
+
+        selection =  float(input(" OPÇÃO : "))
+
+        if selection == 1:
+            while (selection == 1):
+                self.contasreceber.append(input('informe o seu ganho : '))
+                self.receber.append(input('Valor do ganho : '))
+               # self.somaganhos = self.somaganhos + self.receber
+                return self.contas_a_receber()
+        elif(selection == 2):
+            return self.menu()
+        else:
+            print(" INFORME UMA OÇÃO VALIDA ! ")
+            self.sleep(2)
+
+    # 3 - EXTRATO
     def Extrato(self):
         print()
         print("CONTAS A PAGAR")
         print(f'As suas contas são: {self.cadastro} \n')
-        print(f"No valor          : {self.valor}\n")
+        print(f"No valor          : {self.valor}\n") 
         print('Valor total a pagar: '+str(self.somadivida))
         print("--------------------------------------------")
         print()
